@@ -1,20 +1,5 @@
 //code template from developer.mozilla.org
  
-/*  var canvas = document.getElementById("game");
-  var ctx = canvas.getContext("2d");
-  
-
-  ctx.beginPath();
-ctx.arc(240, 160, 20, 0, Math.PI*2, false);
-ctx.fillStyle = "green";
-ctx.fill();
-ctx.closePath();
-  
-ctx.beginPath();
-ctx.rect(20, 40, 50, 50);
-ctx.fillStyle = "#FF0000";
-ctx.fill();
-ctx.closePath(); */
 
 var canvas = document.getElementById("game");
 var ctx = canvas.getContext("2d");
@@ -25,8 +10,6 @@ var dx = 2;
 var dy = -2;
 var paddleHeight = 10;
 var paddleWidth = 75;
-
-
 
 
 
@@ -43,7 +26,7 @@ var brickOffsetLeft = 30;
 var score = 0;
 var lives = 3;
 
-var downPress = false;
+
 
 var bricks = [];
 for(var c=0; c<brickColumnCount; c++) {
@@ -65,9 +48,7 @@ function keyDownHandler(e) {
         leftPressed = true;
     }
 
-    else if(e.key == "Down" || e.key == "ArrowDown") {
-        downPress = true;
-    }
+   
 }
 
 function keyUpHandler(e) {
@@ -77,6 +58,8 @@ function keyUpHandler(e) {
     else if(e.key == "Left" || e.key == "ArrowLeft") {
         leftPressed = false;
     }
+    
+  
 }
 
 function mouseMoveHandler(e) {
@@ -95,7 +78,7 @@ function collisionDetection() {
           b.status = 0;
           score++;
           if(score == brickRowCount*brickColumnCount) {
-            alert("YOU WIN, CONGRATS!");
+            alert("YOU WIN, CONGRATS! SCORE: " + score);
             document.location.reload();
           }
         }
@@ -183,7 +166,7 @@ function draw() {
     else {
       lives--;
       if(!lives) {
-        alert("GAME OVER");
+        alert("GAME OVER. SCORE: " + score);
         document.location.reload();
       }
       else {
@@ -203,13 +186,10 @@ function draw() {
     paddleX -= 7;
   }
 
-    if(downPress== "true") {
-        alert("GAME OVER");
-        document.location.reload();
-    }
+   
   x += dx;
   y += dy;
   requestAnimationFrame(draw);
 }
 
-draw();
+//draw();
