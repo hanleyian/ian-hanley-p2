@@ -77,9 +77,11 @@ function collisionDetection() {
           dy = -dy;
           b.status = 0;
           score++;
+          
           if(score == brickRowCount*brickColumnCount) {
-            alert("YOU WIN, CONGRATS! SCORE: " + score);
-            document.location.reload();
+           //alert("YOU WIN, CONGRATS! SCORE: " + score);
+          //document.location.reload();
+          drawBricks();
           }
         }
       }
@@ -90,7 +92,7 @@ function collisionDetection() {
 function drawBall() {
   ctx.beginPath();
   ctx.arc(x, y, ballRadius, 0, Math.PI*2);
-  ctx.fillStyle = "#0095DD";
+  ctx.fillStyle = "orange";
   ctx.fill();
   ctx.closePath();
 }
@@ -101,7 +103,7 @@ function drawBall() {
 function drawPaddle() {
   ctx.beginPath();
   ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight);
-  ctx.fillStyle = "#0095DD";
+  ctx.fillStyle = "black";   //try to change color
   ctx.fill();
   ctx.closePath();
 }
@@ -115,7 +117,7 @@ function drawBricks() {
         bricks[c][r].y = brickY;
         ctx.beginPath();
         ctx.rect(brickX, brickY, brickWidth, brickHeight);
-        ctx.fillStyle = "#0095DD";
+        ctx.fillStyle = "red";
         ctx.fill();
         ctx.closePath();
       }
