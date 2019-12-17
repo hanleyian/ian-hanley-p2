@@ -70,22 +70,31 @@ function mouseMoveHandler(e) {
 }
 function collisionDetection() {
   for(var c=0; c<brickColumnCount; c++) {
-    for(var r=0; r<brickRowCount; r++) {
-      var b = bricks[c][r];
-      if(b.status == 1) {
-        if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
-          dy = -dy;
-          b.status = 0;
-          score++;
-          
-          if(score == brickRowCount*brickColumnCount) {
-           //alert("YOU WIN, CONGRATS! SCORE: " + score);
-          //document.location.reload();
-          drawBricks();
+      for(var r=0; r<brickRowCount; r++) {
+          var b = bricks[c][r];
+          if(b.status == 1) {
+              if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
+                  dy = -dy;
+                  b.status = 0;
+                  score++;
+                  //if(score == brickRowCount*brickColumnCount) {
+                    if(r==0 & c==0) { //makes game endless/bricks respawn 
+                     
+                     for(var c=0; c<brickColumnCount; c++) {
+                       for(var r=0; r<brickRowCount; r++) {
+
+                        var b = bricks[c][r];
+                        b.status = 1;
+
+                       }
+                     }
+
+                     
+ 
+                  }
+              }
           }
-        }
       }
-    }
   }
 }
 
@@ -124,6 +133,7 @@ function drawBricks() {
     }
   }
 }
+
 function drawScore() {
   ctx.font = "16px Arial";
   ctx.fillStyle = "#0095DD";
@@ -193,5 +203,6 @@ function draw() {
   y += dy;
   requestAnimationFrame(draw);
 }
+
 
 //draw();
