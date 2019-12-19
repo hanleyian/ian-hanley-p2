@@ -19,12 +19,16 @@
   },
   "homepage": "https://github.com/itdev161-fa2019/ian-hanley#readme",
   "dependencies": {
+    "axios": "^0.19.0",
     "bcryptjs": "^2.4.3",
-    "config": "^3.2.2",
+    "config": "^3.2.4",
+    "cors": "^2.8.5",
     "create-react-app": "^3.2.0",
     "esm": "^3.2.25",
     "express": "^4.17.1",
-    "express-validator": "^6.2.0",
+    "express-validator": "^6.3.0",
+    "jQuery": "^1.7.4",
+    "jquery": "^3.4.1",
     "mongoose": "^5.7.1",
     "react": "^16.10.2"
   },

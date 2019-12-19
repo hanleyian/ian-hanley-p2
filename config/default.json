@@ -1,4 +1,3 @@
 {
-    "mongoURI": "mongodb+srv://ian:Bigfoot1.@cluster0-uxz4p.mongodb.net/test?retryWrites=true&w=majority",
-    "jwtSecret": "tokenSecretHere"
+    "mongoURI": "mongodb+srv://ian:Bigfoot1.@cluster0-uxz4p.mongodb.net/Scores?retryWrites=true&w=majority"
 }

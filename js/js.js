@@ -1,5 +1,5 @@
 //code template from developer.mozilla.org
- 
+//import axios from 'axios';
 
 var canvas = document.getElementById("game");
 var ctx = canvas.getContext("2d");
@@ -86,6 +86,8 @@ function collisionDetection() {
                         var b = bricks[c][r];
                         b.status = 1;
 
+                        
+
                        }
                      }
 
@@ -146,11 +148,7 @@ function drawLives() {
 }
 
 
-function drawStop() {
-    ctx.font = "16px Arial";
-    ctx.fillStyle = "##0095DD";
-    ctx.fillText("Quit", 8, 200);
-}
+
 
 
 
@@ -162,7 +160,7 @@ function draw() {
   drawPaddle();
   drawScore();
   drawLives();
-  drawStop();
+
   collisionDetection();
 
   if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
@@ -178,8 +176,20 @@ function draw() {
     else {
       lives--;
       if(!lives) {
-        alert("GAME OVER. SCORE: " + score);
-        document.location.reload();
+        //alert("GAME OVER. SCORE: " + score);
+
+        var sendName = window.prompt(
+          "YOUR SCORE IS: " + score + ". ENTER NAME AND SUBMIT SCORE?", "AAA"
+        );
+
+        var finalScore = score;
+          saveScore(sendName, finalScore);
+    
+
+
+
+
+       // document.location.reload();
       }
       else {
         x = canvas.width/2;
@@ -204,5 +214,32 @@ function draw() {
   requestAnimationFrame(draw);
 }
 
+async function saveScore(pname, score) {
 
+  
+    const player = {
+      name: pname,
+      score: score
+    }
+    
+  
+
+  try {
+    const config = {
+      headers: {
+      'Content-Type': 'application/json'
+      }
+    }
+
+        const body = JSON.stringify(player);
+        const res = await axios.post('http://localhost:5000/api/gameScores', body, config);
+        console.log(res.data);
+        //localStorage.setItem('token', res.data.token);
+      // history.pushState('/');
+  } catch(error) {
+         console.log('error sending from game: ' + error);
+  } 
+ 
+  
+}
 //draw();
